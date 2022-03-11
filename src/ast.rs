@@ -15,7 +15,7 @@ pub enum Ast {
     AsoluteIndexed(u16, char),
     ZeroPageIndexed(u8, char),
     IndirectX(u8),
-    IndirectY(u8)
+    IndirectY(u8),
 }
 
 pub fn get_addresing_mode(ast: &Option<Box<Ast>>) -> Mode {

@@ -1,9 +1,9 @@
+mod asm;
 mod ast;
+mod instruction;
 mod lexer;
 mod linker;
 mod parser;
-mod instruction;
-mod asm;
 
 pub fn compile(text: String, origin: u16) -> Vec<u8> {
     let mut asm = asm::Asm::new(text, origin);

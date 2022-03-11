@@ -102,7 +102,7 @@ impl Lexer {
         let decimal = decimal_str.parse::<u8>();
         match decimal {
             Ok(decimal) => Ok(Token::Decimal(decimal)),
-            Err(_) => Err(format!("decimal value overflow {decimal_str}"))
+            Err(_) => Err(format!("decimal value overflow {decimal_str}")),
         }
     }
 
@@ -121,7 +121,7 @@ impl Lexer {
         let bin = self.parse_if(|c: char| (c == '0') | (c == '1'));
         match bin.len() {
             1..=8 => Ok(Token::Binary(u8::from_str_radix(&bin, 2).unwrap())),
-            _ => Err(format!("Binary litteral has unexpected size : {bin}"))
+            _ => Err(format!("Binary litteral has unexpected size : {bin}")),
         }
     }
 

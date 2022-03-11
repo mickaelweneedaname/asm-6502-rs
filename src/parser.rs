@@ -9,7 +9,7 @@ pub struct Parser {
 impl Parser {
     pub fn new(text: String) -> Self {
         let mut parser = Self {
-            lexer : Lexer::new(text),
+            lexer: Lexer::new(text),
             current_token: None,
         };
         parser.current_token = Some(parser.lexer.get_next_token().unwrap());
@@ -35,7 +35,7 @@ impl Parser {
                 self.eat(Token::Symbol(Symbol::NewLine));
             } else if self.current_token_is(&Token::Eof) {
                 self.eat(Token::Eof);
-                break
+                break;
             }
         }
         Ast::Statements(statements)
@@ -112,9 +112,9 @@ impl Parser {
     //number = binary | hexa8 | hexa16 | decimal
     fn number(&mut self) -> Ast {
         let (token_type, ast) = match self.get_current_token() {
-            Token::Decimal(d)   => (TokenType::Decimal, Ast::Number8(*d)),
-            Token::Binary(b)    => (TokenType::Binary, Ast::Number8(*b)),
-            Token::Hexa8(h)     => (TokenType::Hexa8, Ast::Number8(*h)),
+            Token::Decimal(d) => (TokenType::Decimal, Ast::Number8(*d)),
+            Token::Binary(b) => (TokenType::Binary, Ast::Number8(*b)),
+            Token::Hexa8(h) => (TokenType::Hexa8, Ast::Number8(*h)),
             _ => panic!("Parser : number: unexpected token"),
         };
         self.eat_type(token_type);

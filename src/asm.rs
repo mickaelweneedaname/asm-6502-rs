@@ -1,7 +1,7 @@
-use super::ast::{Ast, get_addresing_mode};
-use super::parser;
-use super::linker;
+use super::ast::{get_addresing_mode, Ast};
 use super::instruction;
+use super::linker;
+use super::parser;
 
 pub struct Asm {
     parser: parser::Parser,
