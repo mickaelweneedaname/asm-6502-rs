@@ -1,5 +1,5 @@
 [package]
-name = "asm-6502"
+name = "asm_6502"
 version = "0.1.0"
 edition = "2021"
 
