@@ -16,6 +16,29 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_lda_sta_brk(){
+        let text = String::from(r#"LDA #10 ; load 10 into register A
+                                          STA $5  ; store register A at address 0x00 + 0x05 = 0x05
+                                          BRK"#);
+        assert_eq!(compile(text, 0x00), vec![0xA9, 0x0A, 0x85, 0x05, 0x00]);
+    }
+
+
+    #[test]
+    fn test_bcc_sta_brk(){
+        let text = String::from(
+     r#"BCC forward ; C is clear is it should branch
+        LDA #10
+        STA $55
+        BCC end
+ forward:
+        LDA #33
+        STA $55
+ end:
+        BRK"#);
+        assert_eq!(compile(text, 0x00), vec![0x90, 0x06, 0xA9, 0x0A, 0x85, 0x55, 0x90, 0x04, 0xA9, 0x21, 0x85, 0x55, 0x00]);
+    }
+    #[test]
     fn compile_instructions() {
         let text = std::fs::read_to_string("src/script/test.asm").unwrap();
         assert_eq!(compile(text, 0x00), vec![0xA9, 0xC0, 0xAA, 0xE8, 0x00])

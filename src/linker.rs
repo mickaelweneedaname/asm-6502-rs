@@ -37,7 +37,7 @@ impl Linker {
     }
 
     fn get(&self, label: &str) -> u16 {
-        *self.labels_indexes.get(label).unwrap()
+        *self.labels_indexes.get(label).unwrap_or_else(| | panic!("Unknown label : {label}"))
     }
 
     pub fn link(
