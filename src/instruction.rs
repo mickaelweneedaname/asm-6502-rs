@@ -16,6 +16,7 @@ pub enum Mode {
     IndirectY,
     Implicit,
     Relative,
+    Accumulator
 }
 
 #[derive(Debug)]
@@ -57,7 +58,7 @@ const INSTRUCTIONS: [Instruction; 151] = [
     Instruction::new("AND", 0x21, Mode::IndirectX, 2),
     Instruction::new("AND", 0x31, Mode::IndirectY, 2),
     //ASL_SET
-    Instruction::new("ASL", 0x0A, Mode::Implicit, 1),
+    Instruction::new("ASL", 0x0A, Mode::Accumulator, 1),
     Instruction::new("ASL", 0x06, Mode::ZeroPage, 2),
     Instruction::new("ASL", 0x16, Mode::ZeroPageX, 2),
     Instruction::new("ASL", 0x0E, Mode::Absolute, 3),
@@ -256,7 +257,8 @@ mod tests {
 
     fn get_lenght_from_mode(mode: &Mode) -> u8 {
         match mode {
-            Mode::Implicit => 1,
+            Mode::Implicit
+            | Mode::Accumulator => 1,
             Mode::Immediate
             | Mode::ZeroPage
             | Mode::ZeroPageX

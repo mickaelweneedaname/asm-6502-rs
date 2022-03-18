@@ -16,6 +16,7 @@ pub enum Ast {
     ZeroPageIndexed(u8, char),
     IndirectX(u8),
     IndirectY(u8),
+    Accumulator,
 }
 
 pub fn get_addresing_mode(ast: &Option<Box<Ast>>) -> Mode {
@@ -38,6 +39,7 @@ pub fn get_addresing_mode(ast: &Option<Box<Ast>>) -> Mode {
             },
             Ast::Label(_) => Mode::Relative,
             Ast::Number8(_) => Mode::Immediate,
+            Ast::Accumulator => Mode::Accumulator,
             _ => panic!("get_addressing_mode : Unexpected node : {:?}", ast),
         }
     } else {

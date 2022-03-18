@@ -124,7 +124,11 @@ impl Parser {
     //label = LABEL
     fn label(&mut self) -> Ast {
         let ast = if let Token::Text(t) = self.eat_type(TokenType::Text) {
-            Ast::Label(t)
+            if t == "A" {
+                Ast::Accumulator
+            } else {
+                Ast::Label(t)
+            }
         } else {
             panic!("Unexpected token {:?}", self.current_token);
         };

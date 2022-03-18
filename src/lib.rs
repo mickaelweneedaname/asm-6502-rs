@@ -38,6 +38,32 @@ mod tests {
         BRK"#);
         assert_eq!(compile(text, 0x00), vec![0x90, 0x06, 0xA9, 0x0A, 0x85, 0x55, 0x90, 0x04, 0xA9, 0x21, 0x85, 0x55, 0x00]);
     }
+    
+    #[test]
+    fn test_beq(){
+        let text = String::from(
+             r#"BCC forward
+            backward:
+                LDX #42
+                STX $42
+                BEQ end
+            forward:
+                LDX #99
+                STX $42
+                BEQ backward
+            end:
+                BRK"#
+        );
+        assert_eq!(compile(text, 0x00), vec![0x90, 0x06, 0xA2, 0x2A, 0x86, 0x42, 0xF0, 0x06, 0xA2, 0x63, 0x86, 0x42, 0xF0, 0xF4, 0x00]);
+    }
+
+    #[test]
+    fn parse_asl_a(){
+        let prog = String::from(r#"ASL A"#);
+        assert_eq!(compile(prog, 0x00), vec![0x0A])
+    }
+
+
     #[test]
     fn compile_instructions() {
         let text = std::fs::read_to_string("src/script/test.asm").unwrap();

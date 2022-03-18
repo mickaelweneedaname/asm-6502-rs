@@ -86,6 +86,7 @@ impl Asm {
                     ));
                 }
                 Ast::Number8(number) => bytes.push(*number),
+                Ast::Accumulator => {},
                 _ => panic!("Asm : unexpected node : {:?}", *args),
             }
         }
