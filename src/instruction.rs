@@ -144,7 +144,7 @@ const INSTRUCTIONS: [Instruction; 151] = [
     Instruction::new("LDY", 0xAC, Mode::Absolute, 3),
     Instruction::new("LDY", 0xBC, Mode::AbsoluteX, 3),
     //LSR_SET
-    Instruction::new("LSR", 0x4A, Mode::Implicit, 1),
+    Instruction::new("LSR", 0x4A, Mode::Accumulator, 1),
     Instruction::new("LSR", 0x46, Mode::ZeroPage, 2),
     Instruction::new("LSR", 0x56, Mode::ZeroPageX, 2),
     Instruction::new("LSR", 0x4E, Mode::Absolute, 3),
@@ -168,13 +168,13 @@ const INSTRUCTIONS: [Instruction; 151] = [
     Instruction::new("DEY", 0x88, Mode::Implicit, 1),
     Instruction::new("INY", 0xC8, Mode::Implicit, 1),
     //ROL_SET
-    Instruction::new("ROL", 0x2A, Mode::Implicit, 1),
+    Instruction::new("ROL", 0x2A, Mode::Accumulator, 1),
     Instruction::new("ROL", 0x26, Mode::ZeroPage, 2),
     Instruction::new("ROL", 0x36, Mode::ZeroPageX, 2),
     Instruction::new("ROL", 0x2E, Mode::Absolute, 3),
     Instruction::new("ROL", 0x3E, Mode::AbsoluteX, 3),
     //ROR_SET
-    Instruction::new("ROR", 0x6A, Mode::Implicit, 1),
+    Instruction::new("ROR", 0x6A, Mode::Accumulator, 1),
     Instruction::new("ROR", 0x66, Mode::ZeroPage, 2),
     Instruction::new("ROR", 0x76, Mode::ZeroPageX, 2),
     Instruction::new("ROR", 0x6E, Mode::Absolute, 3),
