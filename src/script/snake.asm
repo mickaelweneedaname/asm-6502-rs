@@ -212,13 +212,13 @@ updateloop:
   ;lsr: Logical Shift Right. Shift all bits in register A one bit to the right
   ;the bit that "falls off" is stored in the carry flag
   lda $02   ;load the value from address $02 (direction) into register A
-  lsr       ;shift to right
+  lsr a      ;shift to right
   bcs up    ;if a 1 "fell off", we started with bin 0001, so the snakes needs to go up
-  lsr      ;shift to right
+  lsr a     ;shift to right
   bcs right ;if a 1 "fell off", we started with bin 0010, so the snakes needs to go right
-  lsr       ;shift to right
+  lsr a      ;shift to right
   bcs down  ;if a 1 "fell off", we started with bin 0100, so the snakes needs to go down
-  lsr       ;shift to right
+  lsr a      ;shift to right
   bcs left  ;if a 1 "fell off", we started with bin 1000, so the snakes needs to go left
 up:
   lda $10   ;put value stored at address $10 (the least significant byte, meaning the

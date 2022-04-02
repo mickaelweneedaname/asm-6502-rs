@@ -124,7 +124,7 @@ impl Parser {
     //label = LABEL
     fn label(&mut self) -> Ast {
         let ast = if let Token::Text(t) = self.eat_type(TokenType::Text) {
-            if t == "A" {
+            if ["A", "a"].contains(&t.as_ref()){
                 Ast::Accumulator
             } else {
                 Ast::Label(t)
